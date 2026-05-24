@@ -1,37 +1,42 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, 'public')));
 
-const COMMENTS_FILE = path.join(__dirname, 'comments.json');
+/* =========================
+DATABASE CONNECTION
+========================= */
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
+const Comment = mongoose.model('Comment', new mongoose.Schema({
+    name:      { type: String, required: true },
+    message:   { type: String, required: true },
+    createdAt: { type: Date,   default: Date.now }
+}));
 
 /* =========================
 GET COMMENTS
 ========================= */
 
-app.get('/api/comments', (req, res) => {
+app.get('/api/comments', async (req, res) => {
 
     try {
 
-        const comments =
-            JSON.parse(
-                fs.readFileSync(COMMENTS_FILE)
-            );
-
+        const comments = await Comment.find().sort({ createdAt: -1 });
         res.json(comments);
 
     } catch (err) {
 
-        res.status(500).json({
-            error: 'Failed to read comments'
-        });
+        res.status(500).json({ error: 'Failed to read comments' });
 
     }
 
@@ -41,45 +46,22 @@ app.get('/api/comments', (req, res) => {
 SAVE COMMENT
 ========================= */
 
-app.post('/api/comments', (req, res) => {
+app.post('/api/comments', async (req, res) => {
 
     try {
 
         const { name, message } = req.body;
 
         if (!name || !message) {
-
-            return res.status(400).json({
-                error: 'Name and message required'
-            });
-
+            return res.status(400).json({ error: 'Name and message required' });
         }
 
-        const comments =
-            JSON.parse(
-                fs.readFileSync(COMMENTS_FILE)
-            );
-
-        comments.unshift({
-            name,
-            message,
-            createdAt: new Date()
-        });
-
-        fs.writeFileSync(
-            COMMENTS_FILE,
-            JSON.stringify(comments, null, 2)
-        );
-
-        res.json({
-            success: true
-        });
+        await Comment.create({ name, message });
+        res.json({ success: true });
 
     } catch (err) {
 
-        res.status(500).json({
-            error: 'Failed to save comment'
-        });
+        res.status(500).json({ error: 'Failed to save comment' });
 
     }
 
@@ -87,8 +69,4 @@ app.post('/api/comments', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-
-    console.log(`Server running on port ${PORT}`);
-
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
