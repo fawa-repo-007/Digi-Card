@@ -13,9 +13,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 DATABASE CONNECTION
 ========================= */
 
+if (!process.env.MONGODB_URI) {
+    console.error('ERROR: MONGODB_URI environment variable is not set');
+}
+
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('MongoDB connection error:', err));
+    .then(() => console.log('Connected to MongoDB Atlas successfully'))
+    .catch(err => console.error('MongoDB connection FAILED:', err.message));
 
 const Comment = mongoose.model('Comment', new mongoose.Schema({
     name:      { type: String, required: true },
