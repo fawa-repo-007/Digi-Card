@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#f9f6ee"/>
+      <stop offset="50%"  stop-color="#f3efe3"/>
+      <stop offset="100%" stop-color="#e8f0e4"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#f0f7ee" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="btn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#7a9e7e"/>
+      <stop offset="100%" stop-color="#adc9a4"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="28" flood-color="#7a9e7e" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Soft radial glow top-left -->
+  <circle cx="0" cy="0" r="380" fill="rgba(143,179,133,0.22)"/>
+  <!-- Soft radial glow bottom-right -->
+  <circle cx="1200" cy="630" r="340" fill="rgba(196,212,170,0.2)"/>
+
+  <!-- Decorative corner leaves top-left -->
+  <ellipse cx="60"  cy="55"  rx="32" ry="14" fill="#a8c89e" opacity="0.55" transform="rotate(-40 60 55)"/>
+  <ellipse cx="90"  cy="35"  rx="24" ry="10" fill="#c8ddc2" opacity="0.45" transform="rotate(-20 90 35)"/>
+  <ellipse cx="38"  cy="88"  rx="22" ry="9"  fill="#8fad88" opacity="0.4"  transform="rotate(-60 38 88)"/>
+
+  <!-- Decorative corner leaves bottom-right -->
+  <ellipse cx="1140" cy="575" rx="32" ry="14" fill="#a8c89e" opacity="0.55" transform="rotate(140 1140 575)"/>
+  <ellipse cx="1110" cy="598" rx="24" ry="10" fill="#c8ddc2" opacity="0.45" transform="rotate(160 1110 598)"/>
+  <ellipse cx="1162" cy="542" rx="22" ry="9"  fill="#8fad88" opacity="0.4"  transform="rotate(120 1162 542)"/>
+
+  <!-- Floating petals -->
+  <ellipse cx="200"  cy="160" rx="8" ry="13" fill="#a8c89e" opacity="0.5" transform="rotate(30 200 160)"/>
+  <ellipse cx="980"  cy="120" rx="7" ry="11" fill="#c8ddc2" opacity="0.45" transform="rotate(-25 980 120)"/>
+  <ellipse cx="1050" cy="430" rx="8" ry="13" fill="#a8c89e" opacity="0.4"  transform="rotate(50 1050 430)"/>
+  <ellipse cx="155"  cy="480" rx="6" ry="10" fill="#8fad88" opacity="0.4"  transform="rotate(-45 155 480)"/>
+
+  <!-- Card -->
+  <rect x="200" y="70" width="800" height="490" rx="48" fill="url(#card)" filter="url(#shadow)" stroke="#c8ddc2" stroke-width="1.5"/>
+
+  <!-- Bismillah (simplified Arabic-style text) -->
+  <text x="600" y="148" text-anchor="middle" font-family="serif" font-size="22" fill="#7a9e7e" opacity="0.9">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</text>
+
+  <!-- "TOGETHER WITH THEIR FAMILIES" -->
+  <text x="600" y="182" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#7a8e6e" letter-spacing="6">TOGETHER WITH THEIR FAMILIES</text>
+
+  <!-- Bride name -->
+  <text x="600" y="275" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#5c8060" font-style="italic">Fathima Afeefa</text>
+
+  <!-- Ampersand -->
+  <text x="600" y="328" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#8fad88" font-style="italic">&amp;</text>
+
+  <!-- Groom name -->
+  <text x="600" y="408" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#5c8060" font-style="italic">Hasan Moinnudheen</text>
+
+  <!-- Divider line -->
+  <line x1="460" y1="432" x2="740" y2="432" stroke="#adc9a4" stroke-width="1" opacity="0.7"/>
+
+  <!-- Date & place -->
+  <text x="600" y="462" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#7a8e6e" letter-spacing="5">05 JULY 2026  •  MANGALORE</text>
+
+  <!-- Button -->
+  <rect x="468" y="484" width="264" height="46" rx="23" fill="url(#btn)"/>
+  <text x="600" y="513" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="white" letter-spacing="4">OPEN INVITATION</text>
+</svg>
