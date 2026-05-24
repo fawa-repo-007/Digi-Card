@@ -1,14 +1,37 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const sharp = require('sharp');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/* =========================
+OG PREVIEW IMAGE (SVG → PNG)
+========================= */
+
+let ogPngCache = null;
+
+app.get('/og-preview.png', async (req, res) => {
+    try {
+        if (!ogPngCache) {
+            const svgPath = path.join(__dirname, 'public', 'og-preview.svg');
+            const svgBuffer = fs.readFileSync(svgPath);
+            ogPngCache = await sharp(svgBuffer).png().toBuffer();
+        }
+        res.setHeader('Content-Type', 'image/png');
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+        res.send(ogPngCache);
+    } catch (err) {
+        res.status(500).send('Image generation failed');
+    }
+});
 
 /* =========================
 DATABASE CONNECTION
